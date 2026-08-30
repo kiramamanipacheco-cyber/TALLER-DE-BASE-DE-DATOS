@@ -1,0 +1,86 @@
+USE kira_ldk;
+-- ==========================================
+-- DATOS PERSONALES
+-- ==========================================
+
+INSERT INTO Datos_Personales
+(nombre, apellido, nombre_usuario, edad, ciudad, carrera, instituto, curso)
+VALUES
+('Kira', 'mamani pacheco', 'KiraLDK', 18, 'Arequipa',
+ 'Arquitectura de Plataformas TIC',
+ 'Instituto de Educación Superior Tecnológico Público de La Joya',
+ 'Base de Datos');
+-- ==========================================
+-- GUSTOS
+-- ==========================================
+INSERT INTO Gustos
+(persona_id, categoria, descripcion)
+VALUES
+(1, 'Música', 'K-pop'),
+(1, 'Música', 'Rock'),
+(1, 'Música', 'Pop'),
+(1, 'Música', 'Reggaetón'),
+(1, 'Música', 'Salsa'),
+(1, 'Música', 'Bachata'),
+(1, 'Películas', 'Películas paranormales'),
+(1, 'Series', 'K-dramas'),
+(1, 'Fotografía', 'Paisajes y naturaleza');
+-- ==========================================
+-- PASATIEMPOS
+-- ==========================================
+INSERT INTO Pasatiempos
+(persona_id, nombre, frecuencia, descripcion)
+VALUES
+(1, 'Escuchar música', 'Diariamente',
+ 'Escuchar diferentes géneros musicales'),
+(1, 'Ver K-dramas', 'Frecuentemente',
+ 'Disfrutar series y dramas coreanos'),
+(1, 'Ver películas', 'Semanalmente',
+ 'Especialmente películas paranormales'),
+(1, 'Tomar fotografías', 'Ocasionalmente',
+ 'Fotografiar paisajes y lugares interesantes'),
+(1, 'Salir con amigos', 'Ocasionalmente',
+ 'Compartir tiempo y realizar actividades');
+-- ==========================================
+-- DEPORTES
+-- ==========================================
+INSERT INTO Deportes
+(persona_id, nombre, nivel, frecuencia)
+VALUES
+(1, 'Vóley', 'Intermedio', 'Semanalmente'),
+(1, 'Caporales', 'En aprendizaje', 'Semanalmente');
+-- ==========================================
+-- ACTIVIDADES
+-- ==========================================
+INSERT INTO Actividades
+(persona_id, nombre, tipo, descripcion, fecha)
+VALUES
+(1, 'Estudiar Computación e Informática',
+ 'Académica',
+ 'Realizar trabajos y actividades del instituto',
+ '2026-08-29'),
+(1, 'Practicar vóley',
+ 'Deportiva',
+ 'Participar en entrenamientos y partidos',
+ '2026-08-23'),
+(1, 'Escuchar música',
+ 'Recreativa',
+ 'Escuchar música durante el tiempo libre',
+ '2026-08-20'),
+(1, 'Ver K-dramas',
+ 'Entretenimiento',
+ 'Ver series coreanas durante el tiempo libre',
+ '2026-08-18'),
+(1, 'Tomar fotografías',
+ 'Artística',
+ 'Fotografiar paisajes y lugares',
+ '2026-08-15');
+-- ==========================================
+-- FAMILIA
+-- ==========================================
+INSERT INTO Familia
+(persona_id, nombre, parentesco, edad, ocupacion)
+VALUES
+(1, 'Mamá', 'Madre', 45, 'ama_de_casa'),
+(1, 'Papá', 'Padre', 45, 'Trabajador'),
+(1, 'Hermano/a', 'Hermano/a', 18, 'Estudiante');
