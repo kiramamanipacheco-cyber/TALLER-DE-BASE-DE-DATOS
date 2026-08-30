@@ -1,0 +1,117 @@
+-- ==========================================
+-- BASE DE DATOS: KIRA LDK
+-- ==========================================
+CREATE DATABASE IF NOT EXISTS kira_ldk
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE kira_ldk;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS Actividades;
+DROP TABLE IF EXISTS Deportes;
+DROP TABLE IF EXISTS Pasatiempos;
+DROP TABLE IF EXISTS Gustos;
+DROP TABLE IF EXISTS Familia;
+DROP TABLE IF EXISTS Datos_Personales;
+
+SET FOREIGN_KEY_CHECKS = 1;
+-- ==========================================
+-- TABLA: DATOS PERSONALES
+-- ==========================================
+CREATE TABLE Datos_Personales (
+    persona_id      INT AUTO_INCREMENT PRIMARY KEY,
+    nombre          VARCHAR(50) NOT NULL,
+    apellido        VARCHAR(80) NOT NULL,
+    nombre_usuario  VARCHAR(50) NOT NULL UNIQUE,
+    edad            INT,
+    ciudad          VARCHAR(50),
+    carrera         VARCHAR(100),
+    instituto       VARCHAR(150),
+    curso           VARCHAR(100)
+) ENGINE=InnoDB;
+-- ==========================================
+-- TABLA: GUSTOS
+-- ==========================================
+CREATE TABLE Gustos (
+    gusto_id        INT AUTO_INCREMENT PRIMARY KEY,
+    persona_id      INT NOT NULL,
+    categoria       VARCHAR(50) NOT NULL,
+    descripcion     VARCHAR(150) NOT NULL,
+
+    CONSTRAINT fk_gusto_persona
+    FOREIGN KEY (persona_id)
+    REFERENCES Datos_Personales(persona_id)
+) ENGINE=InnoDB;
+-- ==========================================
+-- TABLA: PASATIEMPOS
+-- ==========================================
+CREATE TABLE Pasatiempos (
+    pasatiempo_id   INT AUTO_INCREMENT PRIMARY KEY,
+    persona_id      INT NOT NULL,
+    nombre          VARCHAR(80) NOT NULL,
+    frecuencia      VARCHAR(30),
+    descripcion     VARCHAR(150),
+
+    CONSTRAINT fk_pasatiempo_persona
+    FOREIGN KEY (persona_id)
+    REFERENCES Datos_Personales(persona_id)
+) ENGINE=InnoDB;
+-- ==========================================
+-- TABLA: DEPORTES
+-- ==========================================
+CREATE TABLE Deportes (
+    deporte_id      INT AUTO_INCREMENT PRIMARY KEY,
+    persona_id      INT NOT NULL,
+    nombre          VARCHAR(50) NOT NULL,
+    nivel           VARCHAR(30),
+    frecuencia      VARCHAR(30),
+
+    CONSTRAINT fk_deporte_persona
+    FOREIGN KEY (persona_id)
+    REFERENCES Datos_Personales(persona_id)
+) ENGINE=InnoDB;
+-- ==========================================
+-- TABLA: ACTIVIDADES
+-- ==========================================
+CREATE TABLE Actividades (
+    actividad_id    INT AUTO_INCREMENT PRIMARY KEY,
+    persona_id      INT NOT NULL,
+    nombre          VARCHAR(100) NOT NULL,
+    tipo            VARCHAR(50),
+    descripcion     VARCHAR(200),
+    fecha           DATE,
+
+    CONSTRAINT fk_actividad_persona
+    FOREIGN KEY (persona_id)
+    REFERENCES Datos_Personales(persona_id)
+) ENGINE=InnoDB;
+-- ==========================================
+-- TABLA: FAMILIA
+-- ==========================================
+CREATE TABLE Familia (
+    familiar_id     INT AUTO_INCREMENT PRIMARY KEY,
+    persona_id      INT NOT NULL,
+    nombre          VARCHAR(80) NOT NULL,
+    parentesco      VARCHAR(40) NOT NULL,
+    edad            INT,
+    ocupacion       VARCHAR(80),
+
+    CONSTRAINT fk_familia_persona
+    FOREIGN KEY (persona_id)
+    REFERENCES Datos_Personales(persona_id)
+) ENGINE=InnoDB;
+-- ==========================================
+-- ÍNDICES
+-- ==========================================
+CREATE INDEX idx_gustos_persona
+ON Gustos(persona_id);
+CREATE INDEX idx_pasatiempos_persona
+ON Pasatiempos(persona_id);
+CREATE INDEX idx_deportes_persona
+ON Deportes(persona_id);
+CREATE INDEX idx_actividades_persona
+ON Actividades(persona_id);
+CREATE INDEX idx_familia_persona
+ON Familia(persona_id);
